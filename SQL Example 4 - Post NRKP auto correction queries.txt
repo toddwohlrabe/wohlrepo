@@ -1,0 +1,82 @@
+Select * from CD04693S.H_CM_PRSN a
+where (prsn_key,nrkp_prsn_id) in (Select prsn_key,nrkp_prsn_id from CD04693S.H_CM_PRSN a
+where exists (select * from CD04693S.h_cm_prsn b
+where a.prsn_key = b.prsn_key
+and a.nrkp_prsn_id = b.nrkp_prsn_id
+and a.nrkp_key <> b.nrkp_key
+and proc_st_cd not like 'X%'
+and proc_st_cd NOT LIKE 'D%'
+and nrkp_key <> '0')
+and proc_st_cd not like 'X%'
+and nrkp_key <> '0'
+and proc_st_cd NOT LIKE 'D%'
+and nrkp_prsn_id <> ' ')
+and proc_st_cd not like 'X%'
+and nrkp_key <> '0'
+and proc_st_cd NOT LIKE 'D%';
+
+Select * from CD04693S.H_CM_PRSN a
+where (prsn_key,FRST_NM,month(a.BRTH_DT),day(a.BRTH_DT)) in (Select prsn_key,FRST_NM,month(a.BRTH_DT),day(a.BRTH_DT) from CD04693S.H_CM_PRSN a
+where exists (select * from CD04693S.h_cm_prsn b
+where a.prsn_key = b.prsn_key
+and a.nrkp_prsn_id <> b.nrkp_prsn_id
+and a.FRST_NM = b.FRST_NM
+and a.BRTH_DT <> b.BRTH_DT
+and month(a.BRTH_DT) = month(b.BRTH_DT)
+and day(a.BRTH_DT) = day(b.BRTH_DT)
+and proc_st_cd not like 'X%'
+and proc_st_cd NOT LIKE 'D%'
+and nrkp_key <> '0')
+and proc_st_cd not like 'X%'
+and nrkp_key <> '0'
+and proc_st_cd NOT LIKE 'D%')
+and proc_st_cd not like 'X%'
+and nrkp_key <> '0'
+and proc_st_cd NOT LIKE 'D%';
+
+Select * from CD04693S.H_CM_PRSN a
+where (prsn_key, nrkp_key) in (Select prsn_key, nrkp_key from CD04693S.H_CM_PRSN a
+where exists (select * from CD04693S.h_cm_prsn b
+where a.prsn_key = b.prsn_key
+and a.nrkp_prsn_id <> b.nrkp_prsn_id
+and a.nrkp_key = b.nrkp_key
+and (a.data_source <>'TBA' or b.data_source <> 'TBA')
+and (a.NRKP_RLTN_CD <> 'DL' AND B.NRKP_RLTN_CD <>'DL')
+and proc_st_cd not like 'X%'
+and proc_st_cd NOT LIKE 'D%'
+and nrkp_key <> '0')
+and proc_st_cd not like 'X%'
+and proc_st_cd NOT LIKE 'D%'
+and nrkp_key <> '0')
+and proc_st_cd not like 'X%'
+and proc_st_cd NOT LIKE 'D%'
+and nrkp_key <> '0';
+
+Select * from CD04693S.H_CM_PRSN a
+where exists(select * from CD04693S.H_CM_PRSN b
+where a.PRSN_KEY = b.PRSN_KEY
+and  (a.NRKP_PRSN_ID <> b.NRKP_PRSN_ID or a.NRKP_KEY <> b.NRKP_KEY)
+and (a.NRKP_RLTN_CD <> 'DL' AND B.NRKP_RLTN_CD <>'DL')
+and (a.data_source <>'TBA' or b.data_source <> 'TBA')
+and a.FRST_NM = b.FRST_NM 
+and a.BRTH_DT = b.BRTH_DT
+and proc_st_cd not like 'X%'
+and proc_st_cd NOT LIKE 'D%'
+AND NRKP_KEY <> '0')
+and proc_st_cd not like 'X%'
+and proc_st_cd NOT LIKE 'D%'
+AND NRKP_KEY <> '0';
+
+Select * from CD04693S.H_CM_PRSN a
+where exists(select * from CD04693S.H_CM_PRSN b
+where a.PRSN_KEY = b.PRSN_KEY
+and  (a.NRKP_PRSN_ID <> b.NRKP_PRSN_ID or a.NRKP_KEY <> b.NRKP_KEY)
+and proc_st_cd not like 'X%'
+and proc_st_cd NOT LIKE 'D%'
+AND NRKP_KEY <> '0'
+AND NRKP_RLTN_CD IN ('S','DP'))
+and proc_st_cd not like 'X%'
+and proc_st_cd NOT LIKE 'D%'
+AND NRKP_KEY <> '0'
+AND NRKP_RLTN_CD IN ('S','DP')
+
