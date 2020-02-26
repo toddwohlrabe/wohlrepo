@@ -1,0 +1,33 @@
+SELECT
+          A.ACT_ID
+        , A.PRCS_GP_ID
+        , B.ACT_LDSC_TX                             AS ACTIVITY_DESCRIPTION
+        , C.EDIT_ID
+        , COALESCE(F.EDIT_DESC_TX,G.EDIT_DESC_TX)   AS EDIT_DESCRIPTION 
+        , C.TRNS_ID                              
+        , COALESCE(E.TRNS_LDSC_TX,'NO TRANSACTION') AS TRANSACTION_DESCRIPTION
+        , C.ERR_STAT_CD                             as OVERRIDEN  
+        , A.ACT_ST_CD
+        , COUNT(*)                                  AS COUNT
+     FROM
+          Q103501X.PRSN_ACT       A
+        , Q103501X.ACT            B
+        , Q103501X.PRSN_ACT_ERR   C
+left join Q103501X.EDIT F         on C.EDIT_ID = F.EDIT_ID
+left join Q103501X.BASE_EDIT G    ON C.EDIT_ID = G.EDIT_ID
+LEFT JOIN Q103501X.TRNS E         ON C.TRNS_ID = E.TRNS_ID AND E.EFENDDT = '2299-12-31'
+    WHERE A.INIT_ENTY_TS          >= '2019-07-31-00.00.00.000000' -- ACTG DATE
+     AND A.ACT_ID                 = B.ACT_ID
+     AND A.PRSN_INTN_ID           = C.PRSN_INTN_ID
+     AND A.ACT_REF_NMBR_ID        = C.ACT_REF_NMBR_ID
+     AND C.ERR_STAT_CD            NOT IN ('C')
+     AND A.ACT_ST_CD              NOT IN ('CNCL')
+GROUP BY  A.ACT_ID
+        , A.PRCS_GP_ID
+        , B.ACT_LDSC_TX
+        , C.EDIT_ID
+        , COALESCE(F.EDIT_DESC_TX,G.EDIT_DESC_TX)
+        , C.TRNS_ID
+        , COALESCE(E.TRNS_LDSC_TX,'NO TRANSACTION')
+        , C.ERR_STAT_CD
+        , A.ACT_ST_CD
