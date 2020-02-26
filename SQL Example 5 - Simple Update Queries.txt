@@ -1,0 +1,12 @@
+update CD04693Z.H_CM_PRSN
+set NRKP_PRSN_ID = 'A' || trim(NRKP_PRSN_ID)
+where length(trim(NRKP_PRSN_ID)) = 8;
+
+update CD04693Z.H_CM_cdh
+set NRKP_PRSN_ID = 'A' || trim(NRKP_PRSN_ID)
+where length(trim(NRKP_PRSN_ID)) = 8;
+
+update CD04693Z.H_hm_cov
+set NRKP_PRSN_ID = 'A' || trim(NRKP_PRSN_ID)
+where length(trim(NRKP_PRSN_ID)) = 8;
+

@@ -1,0 +1,9 @@
+INSERT INTO CD07796A.R_EDIT_DATA
+   (EDIT_ID, EDIT_LDESC_TX, EDIT_SDESC_TX) 
+VALUES 
+   ('DC346', ' Soft Balance History bucket count > 30', ' SBHS bucket count > 30');
+   
+INSERT INTO CD07796A.R_EDIT_DATA
+   (EDIT_ID, EDIT_LDESC_TX, EDIT_SDESC_TX) 
+VALUES 
+   ('DC347', 'Eligible or Active in multiple plan participation statuses', 'Multiple ELIG/ACTIVE PPST');
